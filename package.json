@@ -14,8 +14,8 @@
     "type-check": "tsc --noEmit",
     "start": "NODE_ENV=development tsx watch src/index.ts",
     "start:inspect": "NODE_ENV=development tsx watch --inspect-brk src/index.ts",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
-    "test": "jest -i --colors --verbose --detectOpenHandles"
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@adminjs/express": "^6.1.0",
@@ -36,6 +36,7 @@
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
     "http-status": "^1.7.4",
+    "husky": "^9.1.4",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
