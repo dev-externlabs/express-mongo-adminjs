@@ -4,20 +4,56 @@
 ## Project Structure
 
 ```
-src\
- |--config\         # Environment variables and configuration related things
- |--controllers\    # Route controllers (controller layer)
- |--docs\           # Swagger files
- |--middlewares\    # Custom express middlewares
- |--models\         # Mongoose models (data layer)
- |--routes\         # Routes
- |--services\       # Business logic (service layer)
- |--utils\          # Utility classes and functions
- |--validations\    # Request data validation schemas
- |--app.js          # Express app
- |--index.js        # App entry point
+├── 📄CHANGELOG.md
+├── 📄Dockerfile
+├── 📄README.md
+├── 📂config
+│   ├── 📄 config.ts
+│   ├── 📄 logger.ts
+│   ├── 📄 morgan.ts
+│   ├── 📄 passport.ts
+│   ├── 📄 roles.ts
+│   ├── 📂strategies
+│   └── tokens.ts
+├── 📄ecosystem.config.json
+├── 📄jest.config.js
+├── 📄package-lock.json
+├── 📄package.json
+├── 📂src
+│   ├── 📄app.ts
+│   ├── 📂controllers
+│   ├── 📂docs
+│   ├── 📄index.ts
+│   ├── 📂interfaces
+│   ├── 📂middlewares
+│   ├── 📂models
+│   ├── 📂routes
+│   ├── 📂services
+│   ├── 📂utils
+│   └── 📂validations
+├── 📂tests
+│   ├── 📂fixtures
+│   ├── 📂integration
+│   ├── 📂unit
+│   └── 📂utils
+└── 📄tsconfig.json
+
 ```
 
-## API Documentation
+## Notes
+### ENV Updation
 
-To view the list of available APIs and their specifications, run the server and go to `http://localhost:3000/v1/docs` in your browser. This documentation page is automatically generated using the [swagger](https://swagger.io/) definitions written as comments in the route files.
+Whenever you add a env variable make sure to update the validation in config.ts as well.
+
+<br>
+<br>
+
+
+## Dev mode
+[how-to-watch-and-reload-ts-node-when-typescript-files-change](https://stackoverflow.com/questions/37979489/how-to-watch-and-reload-ts-node-when-typescript-files-change) going through this thread and after reading this in tsx
+
+>Type checking is important but it can be time-consuming and expensive to do on every run.... Modern IDEs like VSCode provide real-time type checking via IntelliSense, reducing the need for manual type checks.
+
+I think it's good to leave type checking on vs-code, without being it a blockage in development.
+
+18 directories, 16 files
