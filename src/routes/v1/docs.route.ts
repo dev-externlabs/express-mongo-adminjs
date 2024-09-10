@@ -7,7 +7,7 @@ const router = express.Router();
 
 const jsDocOptions:Options = {
   swaggerDefinition,
-  apis: ['src/docs/*.yml', 'src/routes/v1/*.js'],
+  apis: ['src/docs/*.yml', 'src/routes/v1/*.js','src/routes/v1/*.ts'],
 }
 const specs = swaggerJsdoc(jsDocOptions);
 

@@ -2,7 +2,7 @@ import express from 'express';
 import auth from '../../middlewares/auth.js';
 import validate from '../../middlewares/validate.js';
 import userValidation from '../../validations/user.validation.js';
-import userController from '../../controllers/user.controller.js';
+import userController from '../../controllers/user.controller.js/index.js';
 
 const router = express.Router();
 

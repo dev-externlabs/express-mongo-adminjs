@@ -13,6 +13,7 @@
   "rules": {
     "prettier/prettier": 0,
     "import/no-unresolved":"off",
+    "import/prefer-default-export":"warn",
     "import/extensions":"off",
     "no-console":  ["error", { "allow": ["warn", "error"] }],
     "func-names": "off",
@@ -20,9 +21,11 @@
     "consistent-return": "off",
     "jest/expect-expect": "off",
     "security/detect-object-injection": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_"
+    }],
     "eslint-plugin-import/extensions":"off",
     // to enforce using type for object type definitions, can be type or interface
-    "@typescript-eslint/consistent-type-definitions": ["error","type"]
+    "@typescript-eslint/consistent-type-definitions": ["error","interface"]
   }
 }
