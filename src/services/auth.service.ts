@@ -13,7 +13,7 @@ import { tokenTypes } from '#/tokens';
  */
 const loginUserWithEmailAndPassword = async (email: string, password: string) => {
   const user = await userService.getUserByEmail(email);
-  if (!user || !(user.isPasswordMatch(password))) {
+  if (!user || !(await user.isPasswordMatch(password))) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
   }
   return user;
