@@ -8,7 +8,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['production', 'development', 'test']).describe('Environment'),
   PORT: z.coerce.number().default(3000),
   MONGODB_URL: z.string({
-    description: 'CosmosDB Connection string',
+    description: 'MongoDB Connection string',
     required_error: '😱 You forgot to add a database URL',
   }).min(1),
   GOOGLE_CLIENT_SECRET: z.string().min(1).describe('Client secret'),
