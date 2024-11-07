@@ -8,7 +8,7 @@ const register = catchAsync(async (req: Request, res: Response) => {
   const user = await userService.createUser(req.body);
   const tokens = await tokenService.generateAuthTokens(user);
   res.status(httpStatus.CREATED).send({ user, tokens });
-}, );
+});
 
 const login = catchAsync(async (req: Request<object, object, {email:string, password:string}>, res: Response) => {
   const { email, password } = req.body;
