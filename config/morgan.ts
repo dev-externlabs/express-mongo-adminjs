@@ -1,6 +1,6 @@
 import morgan from 'morgan';
-import config from './config.js';
-import logger from './logger.js';
+import config from './config';
+import logger from './logger';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 morgan.token('message', (req, res:any) => res.locals.errorMessage || '');
