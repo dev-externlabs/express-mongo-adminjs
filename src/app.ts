@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import helmet from 'helmet';
 import config from '#/config';
 import logger from '#/logger';
 import {errorLogger,successLogger} from '#/morgan'
@@ -27,7 +28,9 @@ class App {
     // for parsing application/json
     this.app.use(express.json({ limit: '200mb' }));
     // for parsing application/xwww-
-    this.app.use(express.urlencoded({ extended: true, limit: '200mb' }));
+    this.app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+    // securing app response
+    this.app.use(helmet())
 
     if (config.env !== 'test') {
       this.app.use(successLogger);
