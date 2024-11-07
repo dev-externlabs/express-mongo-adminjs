@@ -1,8 +1,8 @@
 import httpStatus from 'http-status';
 import { Types } from 'mongoose';
 import {User} from '@/models';
-import ApiError from '@/utils/ApiError';
 import { IUser } from '@/interfaces';
+import ApiError from '@/utils/ApiError';
 
 
 const createUser = async (userBody: IUser) => {
@@ -28,10 +28,10 @@ const queryUsers = async (filter:object, options:object) => {
 
 /* *
  * Get user by id
- * @param {ObjectId} id
+ * @param {string} id
  * @returns {Promise<User>}
  */
-const getUserById = async (id: Types.ObjectId) => {
+const getUserById = async (id: Types.ObjectId | string) => {
   return User.findById(id);
 };
 
@@ -51,7 +51,7 @@ const getUserByEmail = async (email: string)  =>
  * @param {Object} updateBody
  * @returns {Promise<User>}
  */
-const updateUserById = async (userId: Types.ObjectId, updateBody: IUser) => {
+const updateUserById = async (userId: string, updateBody: IUser) => {
   const user = await getUserById(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -69,7 +69,7 @@ const updateUserById = async (userId: Types.ObjectId, updateBody: IUser) => {
  * @param {ObjectId} userId
  * @returns {Promise<User>}
  */
-const deleteUserById = async (userId: Types.ObjectId) => {
+const deleteUserById = async (userId: string) => {
   const user = await getUserById(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
