@@ -16,7 +16,8 @@ const loginUserWithEmailAndPassword = async (email: string, password: string) =>
   if (!user || !(await user.isPasswordMatch(password))) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
   }
-  return user;
+  const {_id, name,  role, isEmailVerified} = user
+  return {_id, name, email:user.email, role, isEmailVerified};
 };
 
 /* *
@@ -45,7 +46,7 @@ const refreshAuth = async (refreshToken: string) => {
       throw new Error();
     }
     await refreshTokenDoc.deleteOne();
-    return tokenService.generateAuthTokens(user);
+    return tokenService.generateAuthTokens(user._id.toString());
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Please authenticate');
   }
