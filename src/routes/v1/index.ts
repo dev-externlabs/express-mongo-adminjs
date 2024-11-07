@@ -21,9 +21,9 @@ const devRoutes = [
   },
 ];
 
-defaultRoutes.forEach((route) => {
-  router.use(route.path, route.route);
-});
+router.get('/health', (req, res) => {
+    res.status(200).json({ status: 'Server is running 💗' });
+})
 
 /* istanbul ignore next */
 if (config.env === 'development') {
@@ -31,5 +31,9 @@ if (config.env === 'development') {
     router.use(route.path, route.route);
   });
 }
+
+defaultRoutes.forEach((route) => {
+  router.use(route.path, route.route);
+});
 
 export default router;

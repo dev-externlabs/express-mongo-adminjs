@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
+import expressListRoutes from 'express-list-routes';
 import config from '#/config';
 import logger from '#/logger';
 import {errorLogger,successLogger} from '#/morgan'
@@ -20,13 +21,17 @@ class App {
 
   public async start(port = config.port): Promise<void> {
     this.app.listen(port, (): void => {
+      // Since we are not implementing routes in app like => this.app('/auth', authRoute)
+      // but only pushing it as complete router in app like => this.app('/v1', router)
+      // we need to pass it differently router in expressListRoutes
+      expressListRoutes({_router:router}, {prefix:'/v1'})
       logger.info(`App listening on the port ${port}`);
     });
   }
 
   private initializeMiddlewares(): void {
     // for parsing application/json
-    this.app.use(express.json({ limit: '200mb' }));
+    this.app.use(express.json({ limit: '20mb' }));
     // for parsing application/xwww-
     this.app.use(express.urlencoded({ extended: true, limit: '20mb' }));
     // securing app response
@@ -40,9 +45,7 @@ class App {
   }
 
   private initializeRoutes(): void {
-    const route: express.Router = express.Router();
-    this.app.use(route);
-    route.use('/v1', router);
+    this.app.use('/v1',router);
   }
 
   private initializeErrorHandlers(): void {
