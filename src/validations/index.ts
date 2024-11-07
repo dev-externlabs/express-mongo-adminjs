@@ -1,7 +1,7 @@
 import authValidation from './auth.validation';
-// import userValidation from './user.validation.js';
+import userValidation from './user.validation';
 
 export {
   authValidation,
-  // userValidation,
+  userValidation,
 };

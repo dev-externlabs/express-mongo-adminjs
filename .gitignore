@@ -12,3 +12,7 @@ yarn-error.log
 coverage
 
 tests
+
+dist
+
+.early.coverage
