@@ -24,6 +24,7 @@ const envSchema = z.object({
   SMTP_USERNAME: z.string().optional().describe('username for email server'),
   SMTP_PASSWORD: z.string().optional().describe('password for email server'),
   EMAIL_FROM: z.string().optional().describe('the from field in the emails sent by the app'),
+  APP_LINK: z.string().min(1).describe('App link(fronent url)')
 }).catchall(z.unknown());
 
 
@@ -36,6 +37,7 @@ if (result.error) {
 const envVars = result.data
 const config = {
   env: envVars.NODE_ENV,
+  appLink:envVars.APP_LINK,
   port: envVars.PORT,
   mongoose: {
     url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : ''),
