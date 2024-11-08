@@ -1,11 +1,11 @@
 import authService from './auth.service';
-// import emailService from './email.service.js'; // Uncomment if needed
+import emailService from './email.service';
 import tokenService from './token.service';
 import userService from './user.service';
 
 export {
   authService,
-  // emailService, // Uncomment if needed
+  emailService,
   tokenService,
   userService,
 };

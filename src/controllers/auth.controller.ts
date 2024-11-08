@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import catchAsync from '../utils/catchAsync.js';
-import { authService, userService, tokenService } from '../services/index.js';
+import { authService, userService, tokenService, emailService } from '../services/index.js';
 // import { IHydratedUser } from '@/interfaces';
 
 const register = catchAsync(async (req: Request, res: Response) => {
@@ -27,11 +27,11 @@ const refreshTokens = catchAsync(async (req: Request, res: Response) => {
   res.send({ ...tokens });
 });
 
-/* const forgotPassword = catchAsync(async (req: Request<object, object, {email:string}>, res: Response) => {
+const forgotPassword = catchAsync(async (req: Request<object, object, {email:string}>, res: Response) => {
   const resetPasswordToken = await tokenService.generateResetPasswordToken(req.body.email);
   await emailService.sendResetPasswordEmail(req.body.email, resetPasswordToken);
   res.status(httpStatus.NO_CONTENT).send();
-}); */
+});
 
 const resetPassword = catchAsync(async (req: Request<object, object, {password:string}, {token:string}>, res: Response) => {
   const {token} = req.query
@@ -56,7 +56,7 @@ const authController = {
   login,
   logout,
   refreshTokens,
-  // forgotPassword,
+  forgotPassword,
   resetPassword,
   // sendVerificationEmail,
   verifyEmail,
