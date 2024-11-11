@@ -58,7 +58,7 @@ const refreshAuth = async (refreshToken: string) => {
  * @param {string} newPassword
  * @returns {Promise}
  */
-const resetPassword = async (resetPasswordToken: string, newPassword: string) => {
+const resetPassword = async (resetPasswordToken: string, newPassword: string):Promise<void> => {
   try {
     const resetPasswordTokenDoc = await tokenService.verifyToken(resetPasswordToken, tokenTypes.RESET_PASSWORD);
     const user = await userService.getUserById(resetPasswordTokenDoc.user);
@@ -68,7 +68,10 @@ const resetPassword = async (resetPasswordToken: string, newPassword: string) =>
     await userService.updateUserById(user.id, { password: newPassword });
     await Token.deleteMany({ user: user.id, type: tokenTypes.RESET_PASSWORD });
   } catch (error) {
+    if(error instanceof Error)
+    throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
+
   }
 };
 
