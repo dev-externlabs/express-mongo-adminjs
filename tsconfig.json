@@ -3,9 +3,10 @@
       "strict": true,
       "module": "commonjs",
       "allowJs": true,
+      "skipLibCheck": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
-      "target": "es6",
+      "target": "ES2020",
       "noImplicitAny": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
@@ -28,10 +29,7 @@
     "include": [
       "config/*",
       "src/**/*",
-      "tests/**/*", "config",
+      "tests/**/*", ".env*"
     ],
-    "exclude": [
-      "node_modules",
-      "typings"
-    ]
+    "exclude":["node_modules","src/types/generated/**/*.ts"]
   }
