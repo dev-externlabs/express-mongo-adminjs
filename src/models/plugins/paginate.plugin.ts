@@ -10,6 +10,7 @@
  * @property {number} totalResults - Total number of documents
  */
 
+// import { populate } from "dotenv";
 import { Schema } from "mongoose";
 
 /**
@@ -27,7 +28,7 @@ const paginate = (schema: Schema<any, any, any, any, any>) => {
    * @param {number} [options.page] - Current page (default = 1)
    * @returns {Promise<QueryResult>}
    */
-  schema.statics.paginate = async function (filter, options = {}) {
+  schema.statics.paginate = async function (filter, options: {sortBy?:string, limit?:string, page?:string, populate?:string}) {
     let sort = '';
     if (options.sortBy) {
       const sortingCriteria = options.sortBy.split(',').map((sortOption: string) => {
@@ -46,16 +47,22 @@ const paginate = (schema: Schema<any, any, any, any, any>) => {
     const countPromise = this.countDocuments(filter).exec();
     let docsPromise = this.find(filter).sort(sort).skip(skip).limit(limit);
 
-    if (options.populate) {
-      options.populate.split(',').forEach((populateOption:string) => {
-        docsPromise = docsPromise.populate(
-          populateOption
-            .split('.')
-            .reverse()
-            .reduce((a:any, b:any) => ({ path: b, populate: a }), {})
-        );
-      });
-    }
+    // if (options.populate) {
+    //   options.populate.split(',').forEach((populateOption:string) => {
+    //     docsPromise = docsPromise.populate(
+    //       populateOption
+    //         .split('.')
+    //         .reverse()
+    //         .reduce(
+    //           (a: { path: string; populate: { path: any; populate: any } | object }, b: string) => ({
+    //             path: b,
+    //             populate: a,
+    //           }),
+    //           { path: '', populate: {} }
+    //         )
+    //     );
+    //   });
+    // }
 
     docsPromise = docsPromise.exec();
 
