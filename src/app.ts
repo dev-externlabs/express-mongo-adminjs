@@ -46,6 +46,10 @@ class App {
 
   private initializeRoutes(): void {
     this.app.use('/v1',router);
+    // override express missing route error
+    this.app.get('*', function(_, res) {
+      res.status(404).send({message:'Route does not exist'}).end();
+    });
   }
 
   private initializeErrorHandlers(): void {
