@@ -15,8 +15,8 @@ const getUsers = z.object({
     name: z.string().optional(),
     role: z.string().optional(),
     sortBy: z.string().optional(),
-    limit: z.number().int().optional(),
-    page: z.number().int().optional(),
+    limit: z.string().optional(),
+    page: z.string().optional(),
   }),
 });
 
