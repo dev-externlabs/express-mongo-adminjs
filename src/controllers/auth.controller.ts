@@ -37,7 +37,7 @@ const resetPassword = catchAsync(async (req: Request<object, object, {password:s
   const {token} = req.query
   const {password} = req.body
   await authService.resetPassword(token, password);
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.NO_CONTENT).send({message:"Password updated successfully."});
 });
 
 /* const sendVerificationEmail = catchAsync(async (req: Request<{user:IHydratedUser}>, res: Response) => {
