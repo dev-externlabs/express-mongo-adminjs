@@ -12,10 +12,11 @@
   "engineStrict": true,
   "scripts": {
     "type-check": "tsc --noEmit",
+    "build": "rm -rf dist && tsc && tsc-alias",
     "start:pm2": "pm2 start ecosystem.config.json --no-daemon",
     "start": "NODE_ENV=development tsx watch src/index.ts",
     "start:inspect": "NODE_ENV=development tsx watch --inspect-brk src/index.ts",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js ",
+    "run:build": "NODE_ENV=development nodemon dist/src/index.js ",
     "lint": "eslint . --ignore-path .eslintignore --ext .js,.ts",
     "test": "jest -i --colors --verbose --detectOpenHandles",
     "prepare": "husky",
