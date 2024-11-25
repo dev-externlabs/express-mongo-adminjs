@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-param-reassign */
 
 /**
  * @typedef {Object} QueryResult
@@ -28,7 +27,7 @@ const paginate = (schema: Schema<any, any, any, any, any>) => {
    * @param {number} [options.page] - Current page (default = 1)
    * @returns {Promise<QueryResult>}
    */
-  schema.statics.paginate = async function (filter, options: {sortBy?:string, limit?:string, page?:string, populate?:string}) {
+  schema.statics.paginate = async function (filter, options: {sortBy?:string, limit?:string, page?:string, populate?:string, projection:{[key:string]:number}}) {
     let sort = '';
     if (options.sortBy) {
       const sortingCriteria = options.sortBy.split(',').map((sortOption: string) => {
@@ -45,7 +44,7 @@ const paginate = (schema: Schema<any, any, any, any, any>) => {
     const skip = (page - 1) * limit;
 
     const countPromise = this.countDocuments(filter).exec();
-    let docsPromise = this.find(filter).sort(sort).skip(skip).limit(limit);
+    let docsPromise = this.find(filter, options.projection).sort(sort).skip(skip).limit(limit);
 
     // if (options.populate) {
     //   options.populate.split(',').forEach((populateOption:string) => {
