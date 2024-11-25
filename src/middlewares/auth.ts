@@ -6,6 +6,7 @@ import { getRoleRights } from '../../config/roles';
 import { IUser } from '@/interfaces';
 
 const verifyCallback = (req: Request, resolve: (value?: unknown) => void, reject: (err: unknown) => void, requiredRights: string[]) => async (err: unknown, user: IUser, info: unknown) => {
+
   if (err || info || !user) {
     return reject(new ApiError(httpStatus.UNAUTHORIZED, 'Please authenticate'));
   }

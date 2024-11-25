@@ -1,21 +1,22 @@
+const PERMISSIONS = {
+  READ_USER:'read_users',
+  UPDATE_USER:'update_user',
+  DELETE_USER:'delete_user',
+  CREATE_USER:'create_user',
+  FORGOT_PASSWORD:'forgot_password',
+  RESER_PASSWORD:'reset_password'
+}
 const allRoles = [
   {
     name: "admin",
     permissions: [
-      "create_user",
-      "read_user",
-      "update_user",
-      "delete_user"
+      PERMISSIONS.READ_USER, PERMISSIONS.UPDATE_USER, PERMISSIONS.DELETE_USER, PERMISSIONS.CREATE_USER
     ]
   },
   {
     name: "user",
     permissions: [
-        "create_user",
-        "update_user",
-        "read_user",
-        "forgot_password",
-        "reset_password"
+        PERMISSIONS.UPDATE_USER, PERMISSIONS.FORGOT_PASSWORD, PERMISSIONS.RESER_PASSWORD
     ]
   }
 ]
@@ -26,4 +27,4 @@ const getRoleRights = (roleName: string) =>{
     return findRole?.permissions || []
 }
 
-export {getRoleRights, roles}
+export {getRoleRights, roles, PERMISSIONS}
