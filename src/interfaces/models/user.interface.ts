@@ -15,5 +15,6 @@ export interface IUserMethods {
 
 export interface IUserModel extends Model<IUser, unknown, IUserMethods> {
     isEmailTaken(email: string, excludeUserId?: string): Promise<HydratedDocument<IUser, IUserMethods>>,
-    paginate(filters:object, options: object): Promise<IUser>
+    paginate(filters:object, options: object): Promise<IUser>,
+    // userData(id:string|Types.ObjectId): Promise<HydratedDocument<IUser>>
 }

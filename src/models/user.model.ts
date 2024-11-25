@@ -53,6 +53,7 @@ const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
 );
 
 userSchema.plugin(paginate);
+// userSchema.plugin(userData)
 
 userSchema.statics.isEmailTaken = async function (email:string,excludeUserId?:Types.ObjectId) {
   // const user = await this.findOne({ email });
