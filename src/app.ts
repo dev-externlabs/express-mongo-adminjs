@@ -1,8 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
+import passport from 'passport';
 import expressListRoutes from 'express-list-routes';
 import config from '#/config';
+import jwtStrategy from '#/passport';
 import logger from '#/logger';
 import {errorLogger,successLogger} from '#/morgan'
 import router from './routes/v1';
@@ -30,13 +32,12 @@ class App {
   }
 
   private initializeMiddlewares(): void {
-    // for parsing application/json
     this.app.use(express.json({ limit: '20mb' }));
-    // for parsing application/xwww-
     this.app.use(express.urlencoded({ extended: true, limit: '20mb' }));
     // securing app response
     this.app.use(helmet())
-
+    this.app.use(passport.initialize())
+    passport.use('jwt', jwtStrategy)
     if (config.env !== 'test') {
       this.app.use(successLogger);
       this.app.use(errorLogger);
