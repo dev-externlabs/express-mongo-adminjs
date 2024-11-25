@@ -1,8 +1,7 @@
 {
-  "name": "delaney-concrete-backend",
+  "name": "express-boilerplate",
   "version": "1.0.0",
   "description": "Create a Node.js app for building production-ready RESTful APIs using Express, by running one command",
-  "main": "src/index.mjs",
   "repository": "https://github.com/dev-externlabs/express-mongo-adminjs",
   "author": "Devendra Gaud <devendragaud@externlabs.com>",
   "license": "MIT",

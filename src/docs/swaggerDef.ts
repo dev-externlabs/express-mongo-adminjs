@@ -6,7 +6,7 @@ const {version} = pkg
 const swaggerDef: OAS3Definition = {
   openapi: '3.0.0',
   info: {
-    title: 'Delaney Bio-Crete API documentation',
+    title: 'Express Boilerplate API documentation',
     version,
   },
   servers: [

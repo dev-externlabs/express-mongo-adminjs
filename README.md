@@ -45,6 +45,8 @@
 
 Whenever you add a env variable make sure to update the validation in config.ts as well.
 
+[Swagger Link](http://localhost:3000/v1/docs)
+
 <br>
 <br>
 
